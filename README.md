@@ -1,5 +1,5 @@
-# twrp_device_nothing_froggerPro
-TWRP for Nothing phone 4a pro
+# fox_device_nothing_froggerPro
+OFRP for Nothing phone 4a pro
 
 Recovery tree for the Nothing Phone (4a) Pro, codenamed `froggerPro`.
 
@@ -24,7 +24,7 @@ Resolution              | 1260 x 2800
 Recovery        | TWRP 14.0
 :---------------|:---------------------------
 Variant         | 6.6
-Manifest        | https://github.com/nebrassy/platform_manifest_twrp_aosp.git
+Manifest (kinda)| https://gitlab.com/OrangeFox/sync
 
 
 
