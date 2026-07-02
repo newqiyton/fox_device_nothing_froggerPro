@@ -1,0 +1,47 @@
+import /init.recovery.encryption.rc
+import /init.recovery.qcom_decrypt.fbe.rc
+
+# Set SELinux to Permissive
+on early-init
+    loglevel 7
+    write /sys/fs/selinux/enforce 0
+
+on early-init
+    # UFS Tuning (taken from amethyst tree)
+    write /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8 0
+    write /sys/bus/platform/devices/1d84000.ufshc/clkgate_enable 0
+    write /sys/bus/platform/devices/1d84000.ufshc/enable_wb_buf_flush 0
+
+on init
+    start vendor.boot-qti
+
+on fs
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+    # Make ADSP load from /firmware
+    write /proc/sys/kernel/firmware_config/force_sysfs_fallback 1
+
+    # Mount firmware - Needed for ADSP firmwares
+    mkdir /firmware
+    mount vfat /dev/block/by-name/modem${ro.boot.slot_suffix} /firmware ro
+
+    # Mount persist - Needed for haptics
+    # We want to load this BEFORE "twrp.modules.loaded=true"
+    mkdir /mnt/vendor/persist/
+    mount ext4 /dev/block/bootdevice/by-name/persist /mnt/vendor/persist/ ro
+
+on property:twrp.modules.loaded=true
+    # Load ADSP firmware for PMIC
+    wait /sys/kernel/boot_adsp/boot
+    write /sys/kernel/boot_adsp/boot 1
+    wait /sys/class/power_supply/battery
+
+    start health-hal-2-1
+    # Disable Haptics for the time being, non-functional
+    # start vendor.qti.vibrator
+
+    # Unmount /firmware
+
+on boot
+    setprop sys.usb.config adb

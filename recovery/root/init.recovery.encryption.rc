@@ -1,0 +1,51 @@
+# Adapted from amethyst's OFOX recovery tree.
+#
+# Copyright (C) 2026 chickendrop89
+# Copyright (C) 2026 Ubuntuify
+# SPDX-License-Identifier: GPL-3.0-only
+
+on init
+    start vendor.qseecomd
+
+# Runs after qseecomd runs
+on property:vendor.sys.listeners.registered=true
+    start vendor.ssgtzd
+    start vendor.keymint-qti
+    start vendor.gatekeeper-qti
+
+on property:ro.crypto.state=encrypted && property:twrp.firmware.mounted=true
+    start se_omapi
+    start vendor.secure_element
+
+# Runs after decryption
+on property:twrp.all.users.decrypted=true
+    stop keystore2
+
+    stop vendor.secure_element
+    stop vendor.keymint-qti
+    stop vendor.qseecomd
+    stop vendor.ssgtzd
+    stop vendor.gatekeeper-qti
+
+# Runs after decryption
+on property:twrp.all.users.decrypted=true
+    write /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8 10000
+    write /sys/bus/platform/devices/1d84000.ufshc/clkgate_enable 1
+    write /sys/bus/platform/devices/1d84000.ufshc/enable_wb_buf_flush 1
+
+# Runs when decrypt is done, except for Dual Apps (stock feature, and may exist on custom ROMS)
+on property:twrp.decrypt.done=true
+    write /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8 10000
+    write /sys/bus/platform/devices/1d84000.ufshc/clkgate_enable 1
+    write /sys/bus/platform/devices/1d84000.ufshc/enable_wb_buf_flush 1
+
+
+# HM: Runs during decryption process
+on property:twrp.firmware.mounted=true && property:init.svc.vendor.secure_element=running
+    exec u:r:recovery:s0 -- /system/bin/sh -c "/system/bin/sleep 1"
+
+    umount /vendor/firmware_mnt
+    umount /firmware
+    umount /mnt/vendor/persist
+
+    setprop twrp.firmware.mounted false
