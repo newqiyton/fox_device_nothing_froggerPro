@@ -9,7 +9,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # A/B
-#$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_with_xor.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_with_xor.mk)
 
 # GSI
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)

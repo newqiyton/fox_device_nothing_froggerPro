@@ -13,7 +13,7 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_NO_INPUT_DEVICES := false
 TW_INPUT_BLACKLIST := "null"
 
-TW_MAX_BRIGHTNESS := 1557
+TW_MAX_BRIGHTNESS := 5000
 
 TW_DEFAULT_LANGUAGE     := en
 TW_USE_TOOLBOX          := true
@@ -27,15 +27,19 @@ TW_EXTRA_LANGUAGES      := true
 TW_EXCLUDE_APEX         := true
 TW_INCLUDE_FASTBOOTD    := true
 
-# Haptics / Vibration
-TW_SUPPORT_INPUT_1_2 := true
-TW_USE_LEDS_HAPTICS := true
+TW_LOAD_VENDOR_MODULES := "goodix_ts.ko qts.ko st_fts.ko hapticdrv.ko"
+TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
+
+# Haptics
+TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/default"
+TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
 
 # Change clock position so camera wont close up the clock
 TW_CUSTOM_CLOCK_POS := "590"
 
 # CPU Temperature
-TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone16/temp
+TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone10/temp
 
 # Battery
 TW_CUSTOM_BATTERY_PATH := "/sys/class/power_supply/battery"
@@ -83,11 +87,11 @@ TW_FRAMERATE := 144
 # Include EDL mode
 TW_HAS_EDL_MODE := true
 
-# Encryption (Disabled for testing)
-#TW_INCLUDE_CRYPTO := true
-#TW_INCLUDE_CRYPTO_FBE := true
-#TW_INCLUDE_FBE_METADATA_DECRYPT := true
-#TW_INCLUDE_OMAPI := true
+# Encryption
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_INCLUDE_OMAPI := true
 
 # Debug
 TARGET_USES_LOGD := true
