@@ -66,6 +66,10 @@ TARGET_PREBUILT_KERNEL        := $(DEVICE_PATH)/prebuilt/kernel
 BOARD_MKBOOTIMG_ARGS          += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS          += --pagesize $(BOARD_KERNEL_PAGESIZE)
 
+# Graphics
+TARGET_USES_VULKAN := true
+HWUI_COMPILE_FOR_PERF := true
+
 # Partitions
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 TARGET_COPY_OUT_ODM := odm
@@ -114,7 +118,6 @@ BOARD_RAMDISK_USE_LZ4 := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
 
-
 # Security patch level
 VENDOR_SECURITY_PATCH := 2021-08-01
 
@@ -141,7 +144,6 @@ PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/recovery/root/vendor/etc/vintf/manifest.xml
-# TARGET_USES_64_BIT_BINDER := true
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
