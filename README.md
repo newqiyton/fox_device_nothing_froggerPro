@@ -56,3 +56,8 @@ Manifest (kinda)| https://gitlab.com/OrangeFox/sync
 - [x] Data decryption
     - [x] Without a password
     - [ ] With a password
+
+### Additional functionality
+- [ ] Recovery password protection
+- [x] Flashlight
+- [ ] Changing themes and splash after reboot
