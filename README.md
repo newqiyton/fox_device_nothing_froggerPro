@@ -34,7 +34,6 @@ Manifest (kinda)| https://gitlab.com/OrangeFox/sync
 ## Checklist
 
 ### Functionality
-### Everything else isnt tested because of no touch factor
 
 - [x] Installing and flashing images
     - [x] .zip files (experimental)
@@ -46,7 +45,7 @@ Manifest (kinda)| https://gitlab.com/OrangeFox/sync
         - [x] Sideload
     - [x] FastbootD
     - [x] Screen and brightnesss
-    - [ ] Touchscreen
+    - [x] Touchscreen
     - [ ] MTP
     - [x] Filesystem/Mounts
     - [x] Slot switch
