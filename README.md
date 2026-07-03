@@ -47,17 +47,16 @@ Manifest (kinda)| https://gitlab.com/OrangeFox/sync
     - [x] FastbootD
     - [x] Screen and brightnesss
     - [ ] Touchscreen
-    - [ ] Unmount
     - [ ] MTP
-    - [ ] Filesystem/Mounts
-    - [ ] Slot switch
+    - [x] Filesystem/Mounts
+    - [x] Slot switch
     - [ ] Haptics
 - [ ] Settings persistence
-- [x] Data decryption
-    - [x] Without a password
+- [ ] Data decryption
+    - [ ] Without a password
     - [ ] With a password
 
 ### Additional functionality
-- [ ] Recovery password protection
+- [x] Recovery password protection
 - [x] Flashlight
 - [ ] Changing themes and splash after reboot
