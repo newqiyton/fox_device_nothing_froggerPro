@@ -35,9 +35,6 @@ TW_SUPPORT_INPUT_AIDL_HAPTICS := true
 TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/default"
 TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
 
-# Change clock position so camera wont close up the clock
-TW_CUSTOM_CLOCK_POS := "590"
-
 # CPU Temperature
 TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone10/temp
 
