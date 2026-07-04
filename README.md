@@ -43,7 +43,7 @@ Manifest (kinda)| https://gitlab.com/OrangeFox/sync
 - [x] Built-in features work normally
     - [x] ADB
         - [x] Sideload
-    - [x] FastbootD
+    - [ ] FastbootD
     - [x] Screen and brightnesss
     - [x] Touchscreen
     - [ ] MTP
